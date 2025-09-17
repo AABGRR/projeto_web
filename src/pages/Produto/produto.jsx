@@ -152,11 +152,7 @@ const Produto=()=>{
                         <button onClick={()=>handleDelete(prod.id)}>Deletar</button>
                     </div>
                        
-                       <div>
-                        <button>Editar</button>
-                        <button onClick={()=>handleDelete(prod.id)}>Deletar</button>
-                    </div>
-                       
+                                  
                        
                         </li>
                     ))}
