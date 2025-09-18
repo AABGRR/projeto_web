@@ -9,6 +9,7 @@ import Generico from './pages/Generico/generico';
 
 import Login from './pages/Login/login';
 import Usuario from './pages/Usuario/usuario';
+import Usuarioo from './pages/Usuario/usuario_layout';
 
  
 function RoutesApp (){
@@ -19,6 +20,7 @@ function RoutesApp (){
                 <Routes>
                     <Route path="/" element={<Login/>}/>
                     <Route path="/usuario" element={<Usuario/>}/>
+                    
 
                     <Route element={<Layout/>}>
 
@@ -26,6 +28,7 @@ function RoutesApp (){
                         <Route path="/produto" element={<Produto/>}/>
                         <Route path="/formulario" element={<Formulario/>}/>
                         <Route path="/generico" element={<Generico/>}/>
+                        <Route path="/usuario_layout" element={<Usuarioo/>}/>
                         
                     </Route>    
                 </Routes>

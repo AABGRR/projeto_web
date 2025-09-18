@@ -24,6 +24,7 @@ const Usuario = ()=> {
     const [vemail, setEmail] = useState('')
     const [vsenha, setSenha] = useState('')
     const [message, setMessage] = useState('')
+    const[vimagem, setImg]= useState('')
 
     const navigate = useNavigate();
 
@@ -77,17 +78,33 @@ const Usuario = ()=> {
 
             </div>
 
+             <div className="form-group">
+             <label>Imagem do Usuario</label>
+                <input
+              type="file"
+              accept="image/*"
+              value={vimagem}
+              onChange={(e) => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                  setImg(reader.result); // Salva a imagem em base64 no estado vimg
+                };
+                if (file) {
+                  reader.readAsDataURL(file); // Lê o arquivo selecionado
+                }
+              }}
+            />
+          </div>
+
 
             <div className="form-group">
                 <button onClick={handleSubmit}>Cadastrar usuario</button>
             </div>
 
-
-
-
-
         </form>
 
+       
       
 
        

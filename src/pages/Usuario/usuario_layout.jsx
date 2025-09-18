@@ -5,10 +5,10 @@ import React, { useState, useEffect } from "react";
 function Home() {
 
     //Consulta os dados ao carregar a tela
-    const [vproduto, setProduto] = useState([])  //Consulta os dados
+    const [vusuario, setUsuario] = useState([])  //Consulta os dados
 
     useEffect(() => {
-        api.get("http://localhost:3001/produto")
+        api.get("http://localhost:3001/usuario")
             .then((response) => {
                 setProduto(response.data)
                 console.log(response.data)
@@ -21,18 +21,18 @@ function Home() {
 
         <div className="app-container">
             <div className="main-content">
-                Cardápio Pizzas
+                Usuarios Cadastrados
             </div>
 
 
             <div className="cards-container">
-                {vproduto.map((produto) => (
+                {vusuario.map((usuario) => (
                     <div key={produto.id} className="produto-card">
                         {produto.imagem && (
-                            <img src={produto.imagem} alt={produto.nome} className="produto-imagem" />
+                            <img src={usuario.imagem} alt={vimagem} className="produto-imagem" />
                         )}
-                        <h3>{produto.nome}</h3>
-                        <p>R$ {produto.preco}</p>
+                        <h3>{vnome}</h3>
+                        
                     </div>
                 ))}
             </div>

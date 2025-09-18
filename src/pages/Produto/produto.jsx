@@ -90,7 +90,7 @@ const Produto=()=>{
                 <form>
                     <div className="form-group">
                     <label> Nome do produto</label>
-                    <input type="text" placeholder="Nome do produto" required onChange={(e)=>setNome(e.target.value)}/>
+                    <input type="text" value={vnome} placeholder="Nome do produto" required onChange={(e)=>setNome(e.target.value)}/>
                        
                     </div>
                 </form>
@@ -98,14 +98,14 @@ const Produto=()=>{
                 <form>
                     <div className="form-group">
                     <label> Descrição do produto</label>
-                    <input type="text" placeholder="Descrição do produto" onChange={(e)=>setDesc(e.target.value)} />
+                    <input type="text" value={vdesc} placeholder="Descrição do produto" onChange={(e)=>setDesc(e.target.value)} />
                     </div>
                 </form>
                
                 <form>
                     <div className="form-group">
                     <label> Preço de venda</label>
-                    <input type="text" placeholder="Preço de venda" onChange={(e)=>setPreco(e.target.value)}/>
+                    <input type="text" value={vimagem} placeholder="Preço de venda" onChange={(e)=>setPreco(e.target.value)}/>
                     </div>
                 </form>
                
@@ -116,6 +116,7 @@ const Produto=()=>{
                 <input
               type="file"
               accept="image/*"
+              value={vimagem}
               onChange={(e) => {
                 const file = e.target.files[0];
                 const reader = new FileReader();
