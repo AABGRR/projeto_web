@@ -2,7 +2,7 @@ import api from "axios";
 import React, { useState, useEffect } from "react";
 
 
-function Home() {
+function Perfil() {
 
     //Consulta os dados ao carregar a tela
     const [vusuario, setUsuario] = useState([])  //Consulta os dados
@@ -10,7 +10,7 @@ function Home() {
     useEffect(() => {
         api.get("http://localhost:3001/usuario")
             .then((response) => {
-                setProduto(response.data)
+                setUsuario(response.data)
                 console.log(response.data)
             })
             .catch(err => console.error("Erro ao Buscar os dados", err))
@@ -27,9 +27,9 @@ function Home() {
 
             <div className="cards-container">
                 {vusuario.map((usuario) => (
-                    <div key={produto.id} className="produto-card">
-                        {produto.imagem && (
-                            <img src={usuario.imagem} alt={vimagem} className="produto-imagem" />
+                    <div key={usuario.id} className="produto-card">
+                        {usuario.imagem && (
+                            <img src={usuario.imagem} alt={vimagem} className="usuario-imagem" />
                         )}
                         <h3>{vnome}</h3>
                         
@@ -40,4 +40,4 @@ function Home() {
     
     );
 }
-export default Home;
+export default Perfil;
