@@ -29,9 +29,9 @@ function Perfil() {
                 {vusuario.map((usuario) => (
                     <div key={usuario.id} className="produto-card">
                         {usuario.imagem && (
-                            <img src={usuario.imagem} alt={vimagem} className="usuario-imagem" />
+                            <img src={imagem} alt={vimagem} className="usuario-imagem" />
                         )}
-                        <h3>{vnome}</h3>
+                        <h3>{usuario.nome}</h3>
                         
                     </div>
                 ))}
