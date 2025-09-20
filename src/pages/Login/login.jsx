@@ -1,100 +1,75 @@
-//import { Link } from 'react-router-dom'
-//import Logo from '../img/pizza1.jpg'
-//import imgProduto from '../img/ney2.jpg'
-
-
-//npm install json-server
-//npm install -g json-server
-//npx json-server --watch db.json --port 3001
-
-
-import { useState , useEffect } from 'react';
-import api from 'axios'
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import "./login.css";
 
 
 const Login = () => {
-       
-    {/*inicio*/}
-
-
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [message, setMessage] = useState("");
 
-
     const navigate = useNavigate();
 
-
     const handleLogin = async (e) => {
-      e.preventDefault();
+        e.preventDefault();
 
+        try {
+            const response = await fetch(`http://localhost:3001/usuario?email=${email}&senha=${senha}`);
+            const data = await response.json();
 
-      try {
-        const response = await fetch(`http://localhost:3001/usuario?email=${email}&senha=${senha}`);
-        const data = await response.json();
-
-
-        if (data.length > 0) {
-          setMessage("Login realizado com sucesso!");
-          // Redireciona para a Home
-          navigate("/home");
-        } else {
-          setMessage("Email ou senha inválidos.");
+            if (data.length > 0) {
+                setMessage("Login realizado com sucesso!");
+                navigate("/home");
+            } else {
+                setMessage("Email ou senha inválidos.");
+            }
+        } catch (error) {
+            setMessage("Erro ao conectar com o servidor.");
         }
-      } catch (error) {
-        setMessage("Erro ao conectar com o servidor.");
-      }
     };
 
-
-    return(
-
-
-            <div className="app-container">
-                <div className="main-content">
-
-
+    return (
+        <div className="login-container">
+            <div className="login-content">
                 LOGIN
-           
-           
-                <form onSubmit={handleLogin}>
-                    <div className="form-group">
-                    <label> email</label>
-                    <input type="text" placeholder="digite seu email" value= {email} required onChange={(e)=>setEmail(e.target.value)}/>
-                       
+                <form className="login-form" onSubmit={handleLogin}>
+                    <div className="login-form-group">
+                        <label>Email</label>
+                        <input
+                            type="text"
+                            placeholder="Digite seu email"
+                            value={email}
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
-           
-               
-                    <div className="form-group">
-                    <label> senha </label>
-                    <input type="password" placeholder="Digite sua Senha" value= {senha} required onChange={(e)=>setSenha(e.target.value)} />
+
+                    <div className="login-form-group">
+                        <label>Senha</label>
+                        <input
+                            type="password"
+                            placeholder="Digite sua senha"
+                            value={senha}
+                            required
+                            onChange={(e) => setSenha(e.target.value)}
+                        />
                     </div>
-       
-               
-                    <div className="form-group">
-                    <button type="Submit">Entrar</button>
+
+                    <div className="login-form-group">
+                        <button type="submit">Entrar</button>
                     </div>
                 </form>
 
+                {message && <p className="login-message">{message}</p>}
 
-                    {message && <p>{message}</p> }
-
-
-                <div className="register-link">
+                <div className="login-register-link">
                     <p>
-                        Não tem uma conta? <a href="/usuario">Cadastra-se</a>
+                        Não tem uma conta? <a href="/usuario">Cadastre-se</a>
                     </p>
                 </div>
-
-
-                </div>
-       
             </div>
-       
+        </div>
     );
-}
+};
+
 export default Login;
-
-
- 

@@ -6,147 +6,107 @@
 //npm install -g json-server
 //npx json-server --watch db.json --port 3001
  
-import api from "axios";
 import React, { useState, useEffect } from "react";
+import api from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Usuario.css"; // certifique-se de que o caminho esteja correto
 
 const Usuario = () => {
-    const [vusuario, setUsuario] = useState([]);
+  const [vusuario, setUsuario] = useState([]);
 
-    useEffect(() => {
-        api.get("http://localhost:3001/usuario")
-            .then((response) => {
-                setUsuario(response.data);
-                console.log(response.data);
-            })
-            .catch(err => console.error("Erro ao Buscar os dados", err));
-    }, []);
+  useEffect(() => {
+    api.get("http://localhost:3001/usuario")
+      .then((response) => setUsuario(response.data))
+      .catch(err => console.error("Erro ao Buscar os dados", err));
+  }, []);
 
-    const [vnome, setNome] = useState('');
-    const [vemail, setEmail] = useState('');
-    const [vsenha, setSenha] = useState('');
-    const [vmessage, setMessage] = useState('');
-    const [vimagem, setImg] = useState('');
-    const [vstatus, setStatus] = useState('Ativo');
-    const [vnivel, setNivel] = useState('user');
+  const [vnome, setNome] = useState('');
+  const [vemail, setEmail] = useState('');
+  const [vsenha, setSenha] = useState('');
+  const [vmessage, setMessage] = useState('');
+  const [vimagem, setImg] = useState('');
+  const [vstatus, setStatus] = useState('Ativo');
+  const [vnivel, setNivel] = useState('user');
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault(); // Impede o envio do formulário tradicional
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await api.post("http://localhost:3001/usuario", {
+        nome: vnome,
+        email: vemail,
+        senha: vsenha,
+        Imagem: vimagem,
+        status: vstatus,
+        niveldeascesso: vnivel
+      });
+      console.log(response.data);
+      if (response.data) {
+        setMessage("Cadastro realizado com sucesso!");
+        navigate("/");
+      } else {
+        setMessage("Erro ao realizar cadastro.");
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage("Erro ao se conectar com o servidor.");
+    }
+  };
 
-        try {
-            const response = await api.post("http://localhost:3001/usuario", {
-                nome: vnome,
-                email: vemail,
-                senha: vsenha,
-                Imagem: vimagem,
-                status: vstatus,
-                niveldeascesso: vnivel
-            });
+  return (
+    <div className="usuario-container">
+      <div className="usuario-card">
+        <h2 className="usuario-title">Cadastro de Usuário</h2>
 
-            console.log(response.data);
+        <form className="usuario-form" onSubmit={handleSubmit}>
+          <div className="usuario-form-group">
+            <label htmlFor="nome">Nome</label>
+            <input id="nome" className="usuario-input" type="text" value={vnome} placeholder="Nome" required onChange={(e) => setNome(e.target.value)} />
+          </div>
 
-            // Verifica se a resposta foi bem-sucedida
-            if (response.data) {
-                setMessage("Cadastro realizado com sucesso!");
-                // Redireciona para a página de login após o cadastro
-                navigate("/"); // Navega para a página de login
-            } else {
-                setMessage("Erro ao realizar cadastro.");
-            }
-        } catch (error) {
-            console.error(error);
-            setMessage("Erro ao se conectar com o servidor.");
-        }
-    };
+          <div className="usuario-form-group">
+            <label htmlFor="email">Email</label>
+            <input id="email" className="usuario-input" type="email" value={vemail} placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
+          </div>
 
-    return (
-        <div className="app-container">
-            <div className="main-content">
-                Cadastro de Usuário
+          <div className="usuario-form-group">
+            <label htmlFor="senha">Senha</label>
+            <input id="senha" className="usuario-input" type="password" value={vsenha} placeholder="Senha" required onChange={(e) => setSenha(e.target.value)} />
+          </div>
+
+          <div className="usuario-form-row">
+            <div className="usuario-form-group half">
+              <label htmlFor="status">Status</label>
+              <input id="status" className="usuario-input" type="text" value={vstatus} required onChange={(e) => setStatus(e.target.value)} />
             </div>
 
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Nome</label>
-                    <input
-                        type="text"
-                        value={vnome}
-                        placeholder="Nome"
-                        required
-                        onChange={(e) => setNome(e.target.value)}
-                    />
-                </div>
+            <div className="usuario-form-group half">
+              <label htmlFor="nivel">Nível de Acesso</label>
+              <input id="nivel" className="usuario-input" type="text" value={vnivel} required onChange={(e) => setNivel(e.target.value)} />
+            </div>
+          </div>
 
-                <div className="form-group">
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        value={vemail}
-                        placeholder="Email"
-                        required
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
+          <div className="usuario-form-group">
+            <label>Imagem do Usuário</label>
+            <input type="file" accept="image/*" onChange={(e) => {
+              const file = e.target.files[0];
+              const reader = new FileReader();
+              reader.onloadend = () => setImg(reader.result);
+              if (file) reader.readAsDataURL(file);
+            }} />
+          </div>
 
-                <div className="form-group">
-                    <label>Senha</label>
-                    <input
-                        type="password"
-                        value={vsenha}
-                        placeholder="Senha"
-                        required
-                        onChange={(e) => setSenha(e.target.value)}
-                    />
-                </div>
+          <div className="usuario-form-group">
+            <button className="usuario-button" type="submit">Cadastrar Usuário</button>
+          </div>
+        </form>
 
-                <div className="form-group">
-                    <label>Status</label>
-                    <input
-                        type="text"
-                        value={vstatus}
-                        required
-                        onChange={(e) => setStatus(e.target.value)}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>Nível de Acesso</label>
-                    <input
-                        type="text"
-                        value={vnivel}
-                        required
-                        onChange={(e) => setNivel(e.target.value)}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>Imagem do Usuario</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                            const file = e.target.files[0];
-                            const reader = new FileReader();
-                            reader.onloadend = () => {
-                                setImg(reader.result); // Salva a imagem em base64 no estado vimagem
-                            };
-                            if (file) {
-                                reader.readAsDataURL(file); // Lê o arquivo selecionado
-                            }
-                        }}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <button type="submit">Cadastrar usuário</button>
-                </div>
-            </form>
-
-            {vmessage && <p>{vmessage}</p>}
-        </div>
-    );
+        {vmessage && <p className="usuario-message">{vmessage}</p>}
+      </div>
+    </div>
+  );
 };
 
 export default Usuario;
+

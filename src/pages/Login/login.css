@@ -1,0 +1,103 @@
+/* Container principal */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #e6f2ff; /* Azul bem suave */
+    padding: 20px;
+}
+
+/* Caixa do conteúdo */
+.login-content {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #004080; /* Azul escuro */
+    margin-bottom: 20px;
+}
+
+/* Formulário */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Grupos do formulário */
+.login-form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.login-form-group label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* Inputs */
+.login-form-group input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form-group input:focus {
+    border-color: #0077cc;
+    box-shadow: 0 0 6px rgba(0, 119, 204, 0.3);
+}
+
+/* Botão */
+.login-form-group button {
+    background-color: #0077cc; /* Azul vibrante */
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-form-group button:hover {
+    background-color: #005ea6;
+    transform: scale(1.02);
+}
+
+/* Mensagem */
+.login-message {
+    font-size: 1rem;
+    margin-top: 20px;
+    text-align: center;
+    color: #004080;
+    font-weight: 500;
+}
+
+/* Link de cadastro */
+.login-register-link {
+    margin-top: 20px;
+    font-size: 0.95rem;
+}
+
+.login-register-link a {
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-register-link a:hover {
+    text-decoration: underline;
+}

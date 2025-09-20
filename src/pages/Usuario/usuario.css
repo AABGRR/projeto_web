@@ -1,0 +1,105 @@
+/* reset box-sizing */
+* { box-sizing: border-box; }
+
+.usuario-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:20px;
+  background-color:#f0f8ff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Card centralizado que contém título + formulário */
+.usuario-card{
+  width:100%;
+  max-width:720px; /* mais largo como pediu */
+  background:#ffffff;
+  border-radius:12px;
+  padding:32px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* Título centralizado no topo do card */
+.usuario-title{
+  margin:0;
+  text-align:center;
+  color:#004e92;
+  font-size:1.6rem;
+  font-weight:700;
+}
+
+/* Form */
+.usuario-form{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  text-align:left; /* labels à esquerda dos inputs */
+}
+
+/* Linha com duas colunas (opcional) */
+.usuario-form-row{
+  display:flex;
+  gap:16px;
+}
+.usuario-form-row .half{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Grupo de label + input */
+.usuario-form-group label{
+  font-size:0.95rem;
+  font-weight:600;
+  margin-bottom:6px;
+  color:#222;
+}
+
+.usuario-input,
+.usuario-form-group input[type="file"]{
+  width:100%;
+  padding:10px 12px;
+  border:2px solid #cfcfcf;
+  border-radius:6px;
+  font-size:1rem;
+}
+
+.usuario-input:focus{
+  outline:none;
+  border-color:#0077cc;
+  box-shadow:0 0 6px rgba(0,119,204,0.18);
+}
+
+/* Botão largo alinhado ao centro e 100% largura do card */
+.usuario-button{
+  width:100%;
+  padding:12px 16px;
+  background:#0077cc;
+  color:white;
+  border:none;
+  border-radius:8px;
+  font-weight:700;
+  font-size:1.05rem;
+  cursor:pointer;
+  transition:background 0.15s ease, transform 0.08s ease;
+}
+
+.usuario-button:hover{
+  background:#005ea6;
+  transform:translateY(-1px);
+}
+
+/* Mensagem de status */
+.usuario-message{
+  margin:0;
+  text-align:center;
+  color:#004e92;
+  font-weight:600;
+  padding-top:6px;
+}
