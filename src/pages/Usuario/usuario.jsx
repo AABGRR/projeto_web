@@ -37,7 +37,7 @@ const Usuario = () => {
         nome: vnome,
         email: vemail,
         senha: vsenha,
-        Imagem: vimagem,
+        imagem: vimagem,
         status: vstatus,
         niveldeascesso: vnivel
       });
