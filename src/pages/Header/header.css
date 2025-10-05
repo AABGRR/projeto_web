@@ -1,0 +1,126 @@
+/* Header.css - Menu com hambúrguer, hover azul e animação suave */
+
+.menu-header {
+  background-color: #0b3fa8;
+  color: #fff;
+  padding: 12px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.menu-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e6ecff;
+  margin: 0;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.bar {
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+.menu-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.menu-nav {
+  display: flex;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.menu-link {
+  color: #dce6ff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  transition: 0.3s;
+  background: transparent;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+.menu-link:hover {
+  background-color: #1e56d9;
+  color: #fff;
+}
+
+.menu-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: 0.3s;
+}
+
+.menu-link:hover::after {
+  width: 100%;
+}
+
+/* Responsividade com animação */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .menu-nav {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #0b3fa8;
+    flex-direction: column;
+    width: 200px;
+    text-align: right;
+    padding: 15px;
+    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.3);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .menu-nav.open {
+    max-height: 400px;
+    opacity: 1;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+  }
+
+  .menu-link {
+    padding: 10px;
+    font-size: 1.1rem;
+  }
+}

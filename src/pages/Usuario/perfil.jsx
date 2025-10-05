@@ -27,6 +27,7 @@ function Perfil() {
                             <img src={usuario.imagem} alt={usuario.nome} className="usuario-imagem" />
                         )}
                         <h3>{usuario.nome}</h3>
+                        <p>{usuario.email}</p>
                     </div>
                 ))}
             </div>

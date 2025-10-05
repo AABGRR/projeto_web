@@ -1,26 +1,21 @@
-import { Link } from 'react-router-dom'
-import Logo from '../img/logo.jpg'
+import { Link } from 'react-router-dom';
+import './header.css';
 
-function Header(){
+function Header() {
+  return (
+    <header className="menu-header">
+      <div className="menu-container">
+        <h1 className="menu-logo">LEARNLY</h1>
 
-    return(
-        <header>
-            <div>
-                <img src={Logo} alt="Logo" title="Logo Pizza" />
-            </div>
-            <nav>
-                <a href="/home" className="abas">Home</a>
-                <span className="separador">|</span>
-                <a href="/produto" className="abas">Produto</a>
-                <span className="separador">|</span>
-                <a href="/generico" className="abas">Curso</a>
-                <span className="separador">|</span>
-                <a href="/perfil" className="abas">Perfil</a>
-                
-
-                
-            </nav>
-        </header>
-    );
+        <nav className="menu-nav">
+          <Link to="/home" className="menu-link">Home</Link>
+          <Link to="/produto" className="menu-link">Produto</Link>
+          <Link to="/generico" className="menu-link">Curso</Link>
+          <Link to="/perfil" className="menu-link">Perfil</Link>
+        </nav>
+      </div>
+    </header>
+  );
 }
+
 export default Header;
