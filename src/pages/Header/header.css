@@ -1,126 +1,114 @@
-/* Header.css - Menu com hambúrguer, hover azul e animação suave */
+/* header.css */
 
+/* Header geral */
 .menu-header {
-  background-color: #0b3fa8;
-  color: #fff;
-  padding: 12px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.menu-container {
+  position: relative;
+  background-color: #6db0ee;
+  color: white;
+  height: 60px;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 85%;
-  margin: 0 auto;
+  justify-content: center; /* título centralizado */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 100;
 }
 
+/* Logo centralizado */
 .menu-logo {
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: bold;
-  color: #e6ecff;
   margin: 0;
+  z-index: 2; /* acima do menu lateral */
 }
 
+/* Botão hamburguer transparente e proporcional */
 .menu-toggle {
-  display: none;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 25px;
-  height: 20px;
-  background: none;
+  width: 30px;     /* largura do botão */
+  height: 22px;    /* altura do botão */
+  background: none; 
   border: none;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  padding: 0;      /* sem padding */
+  z-index: 3;
 }
 
-.bar {
+/* Três riscos brancos */
+.menu-toggle span {
+  display: block;
   height: 3px;
   width: 100%;
-  background-color: #fff;
-  border-radius: 3px;
-  transition: 0.3s;
+  background-color: white; 
+  border-radius: 2px;
+  transition: all 0.4s ease;
 }
 
-.menu-toggle.open .bar:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+/* Transformação proporcional para X */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(0px, 14px);
 }
 
-.menu-toggle.open .bar:nth-child(2) {
+.menu-toggle.open span:nth-child(2) {
   opacity: 0;
 }
 
-.menu-toggle.open .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(0px, -14px);
 }
 
+/* Remove qualquer efeito de hover indesejado */
+.menu-toggle:hover {
+  background: none;  /* mantém transparente */
+}
+
+  
+
+/* Menu lateral moderno */
 .menu-nav {
+  position: fixed;
+  top: 0;
+  left: -260px; /* escondido inicialmente */
+  height: 100%;
+  width: 260px;
+  background-color: #6db0ee;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.5);
   display: flex;
-  gap: 20px;
-  transition: all 0.3s ease;
+  flex-direction: column;
+  padding-top: 60px; /* abaixo do header */
+  transition: left 0.4s ease; /* animação suave */
+  z-index: 2;
 }
 
+/* Menu ativo */
+.menu-nav.active {
+  left: 0;
+}
+
+/* Links do menu */
 .menu-link {
-  color: #dce6ff;
+  color: white;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  position: relative;
-  transition: 0.3s;
-  background: transparent;
-  padding: 8px 14px;
-  border-radius: 8px;
+  padding: 15px 25px;
+  font-size: 18px;
+  transition: background 0.2s;
 }
 
 .menu-link:hover {
-  background-color: #1e56d9;
-  color: #fff;
+  background-color: #5187ec;
+  border-radius: 5px;
 }
 
-.menu-link::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background-color: #fff;
-  transition: 0.3s;
-}
-
-.menu-link:hover::after {
-  width: 100%;
-}
-
-/* Responsividade com animação */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-  }
-
+/* Ajuste responsivo para telas pequenas */
+@media screen and (max-width: 400px) {
   .menu-nav {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: #0b3fa8;
-    flex-direction: column;
     width: 200px;
-    text-align: right;
-    padding: 15px;
-    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.3);
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-  }
-
-  .menu-nav.open {
-    max-height: 400px;
-    opacity: 1;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
-  }
-
-  .menu-link {
-    padding: 10px;
-    font-size: 1.1rem;
   }
 }
+
